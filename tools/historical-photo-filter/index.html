@@ -1,0 +1,114 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Historical studio backdrop (draft)</title>
+  <meta name="description" content="Draft client-side tool: keep your face intact, replace background with 1800s studio scenery. Not a costume or stereotype generator.">
+  <meta name="robots" content="noindex,nofollow">
+  <link rel="stylesheet" href="./app.css">
+  <link rel="icon" href="../../assets/favicon.svg">
+</head>
+<body>
+  <header class="mast">
+    <div class="mast-inner">
+      <p class="brand">
+        <span>Historical studio backdrop</span>
+        <small>Client-side draft · photography scenery only</small>
+      </p>
+      <span class="draft-pill">Draft — not published</span>
+    </div>
+  </header>
+
+  <main class="sheet">
+    <section class="disclaimer" role="note">
+      <p class="eyebrow">Respectful use</p>
+      <p><strong>This is a historical photography / studio scenery tool.</strong>
+        Your face and body cutout stay intact and recognizable. Only the
+        <em>background</em> is replaced with 1800s-era studio or painted period scenery.
+        Optional light sepia/grain on the subject does not morph ethnicity, face shape, or clothing.</p>
+      <p><strong>Not a costume, ethnicity, or Indigenous stereotype generator.</strong>
+        No period Indigenous clothing overlays, headdresses, face morphing, or
+        “look like an 1800s Indian” features — those are out of scope.
+        Living people are not props. Use respectfully.</p>
+    </section>
+
+    <section class="privacy">
+      <strong>Privacy:</strong> Your photo is processed in this browser (cutout + composite).
+      It is not uploaded to this hub’s servers. The background-removal library may download
+      model files from a CDN on first use and cache them locally. You share a result only if you download it.
+    </section>
+
+    <section class="card tint">
+      <p class="eyebrow">Step 1</p>
+      <h1>Upload a photo of yourself</h1>
+      <p class="muted">File input or drag and drop. Prefer a clear portrait or upper-body photo with a simple background for best cutout results.</p>
+
+      <input type="file" id="fileInput" class="file-input" accept="image/*" aria-label="Choose a photo">
+      <div id="dropzone" class="dropzone" tabindex="0" role="button" aria-controls="fileInput">
+        <p><strong>Drop a photo here</strong> or click to choose</p>
+        <p class="hint">JPEG, PNG, or WebP · processed only on this device</p>
+      </div>
+    </section>
+
+    <div class="layout">
+      <section class="card controls">
+        <p class="eyebrow">Step 2</p>
+        <h2>Choose a studio backdrop</h2>
+        <p class="fine">Presets are photography-process scenery (studio interiors / painted backdrops), not cultural costume.</p>
+        <div id="presets" class="presets" role="group" aria-label="Backdrop presets"></div>
+
+        <label for="tone">Subject tone (optional, light)</label>
+        <div class="slider-row">
+          <input type="range" id="tone" min="0" max="100" value="25" disabled>
+          <span class="fine" id="toneLabel">Light historical tone: 25%</span>
+        </div>
+
+        <label for="grain">Film grain</label>
+        <div class="slider-row">
+          <input type="range" id="grain" min="0" max="100" value="20" disabled>
+          <span class="fine" id="grainLabel">Grain: 20%</span>
+        </div>
+
+        <label class="check-row">
+          <input type="checkbox" id="vignette" checked disabled>
+          Soft vignette on composite
+        </label>
+
+        <div class="actions">
+          <button type="button" class="btn primary" id="btnProcess" disabled>Remove background &amp; composite</button>
+          <button type="button" class="btn" id="btnReset" disabled>Clear</button>
+        </div>
+        <p class="status" id="status" aria-live="polite"></p>
+      </section>
+
+      <section class="card preview-wrap">
+        <p class="eyebrow">Result</p>
+        <h2>Preview</h2>
+        <div class="stage" id="stage">
+          <p class="placeholder" id="placeholder">Your composited portrait will appear here.</p>
+          <canvas id="canvas" hidden></canvas>
+        </div>
+        <div class="actions">
+          <button type="button" class="btn primary" id="btnPng" disabled>Download PNG</button>
+          <button type="button" class="btn" id="btnJpeg" disabled>Download JPEG</button>
+        </div>
+      </section>
+    </div>
+
+    <section class="card">
+      <h2>Out of scope (will not be added)</h2>
+      <ul class="fine">
+        <li>AI costume / ethnicity transformers</li>
+        <li>Period Indigenous clothing, headdresses, or cultural-dress overlays</li>
+        <li>Face morphing into stereotypes</li>
+        <li>Any “look like an 1800s Indian” (or similar) generator</li>
+      </ul>
+      <p class="fine">See <a href="./README.md">README.md</a> and <a href="./backdrops/ATTRIBUTION.md">backdrop attribution</a>.</p>
+    </section>
+  </main>
+
+  <footer class="site-footer">Draft tool · not linked from the hub homepage · not a live feature</footer>
+  <script type="module" src="./app.js"></script>
+</body>
+</html>
