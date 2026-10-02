@@ -1,0 +1,13 @@
+{
+  "name": "aboriginal-intelligence-test-hub",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Test hub mirroring aboriginalintelligence.github.io site content. Working drafts — not adopted law.",
+  "scripts": {
+    "test": "node scripts/smoke-test.js",
+    "test:html": "node scripts/smoke-test.js"
+  },
+  "engines": {
+    "node": ">=18"
+  }
+}
